@@ -5,12 +5,19 @@
 
 #include "rtl_sink_impl.h"
 
+// The installed rtl_433 headers are plain C and do not guard themselves with
+// extern "C". Wrap the includes so the rtl_433 functions get C linkage —
+// otherwise the compiler emits references to mangled names (e.g.
+// _Z12r_create_cfgv) that libr_433 does not export, and the module fails to
+// load at runtime with "undefined symbol" errors.
+extern "C" {
 #include <rtl_433/fileformat.h>
 #include <rtl_433/pulse_detect.h>
 #include <rtl_433/r_api.h>
 #include <rtl_433/r_flow.h>
 #include <rtl_433/r_private.h>
 #include <rtl_433/rtl_433.h>
+}
 
 #include <algorithm>
 #include <cmath>
