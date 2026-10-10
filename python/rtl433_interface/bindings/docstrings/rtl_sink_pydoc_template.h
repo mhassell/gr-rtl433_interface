@@ -16,12 +16,16 @@
 
 
 
- static const char *__doc_gr_rtl433_interface_rtl_sink = R"doc()doc";
+ static const char *__doc_gr_rtl433_interface_rtl_sink = R"doc(Decode complex baseband samples with rtl_433 and print events as KV.)doc";
 
 
  static const char *__doc_gr_rtl433_interface_rtl_sink_rtl_sink = R"doc()doc";
 
 
- static const char *__doc_gr_rtl433_interface_rtl_sink_make = R"doc()doc";
+ static const char *__doc_gr_rtl433_interface_rtl_sink_make = R"doc(Create an rtl_433 sink for CF32 samples.)doc";
+
+ static const char *__doc_gr_rtl433_interface_rtl_sink_set_freq = R"doc(Set the center frequency in Hz.)doc";
+
+ static const char *__doc_gr_rtl433_interface_rtl_sink_set_samp_rate = R"doc(Set the complex sample rate in samples per second.)doc";
 
   

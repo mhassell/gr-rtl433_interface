@@ -14,8 +14,10 @@
 namespace gr {
   namespace rtl433_interface {
 
+    enum sample_format_t { FMT_CU8 = 0, FMT_CS16 = 1 };
+
     /*!
-     * \brief <+description of block+>
+     * \brief Decode complex baseband samples with rtl_433 and print events as KV.
      * \ingroup rtl433_interface
      *
      */
@@ -32,7 +34,12 @@ namespace gr {
        * class. rtl433_interface::rtl_sink::make is the public interface for
        * creating new instances.
        */
-      static sptr make();
+      static sptr make(double freq = 433920000.0,
+                       double samp_rate = 250000.0,
+                       sample_format_t format = FMT_CS16);
+
+      virtual void set_freq(double freq) = 0;
+      virtual void set_samp_rate(double samp_rate) = 0;
     };
 
   } // namespace rtl433_interface

@@ -45,8 +45,7 @@ target_link_libraries(gnuradio-rtl433_interface gnuradio::gnuradio-runtime)
 target_include_directories(
     gnuradio-rtl433_interface
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
-    PUBLIC $<INSTALL_INTERFACE:include>
-    PRIVATE RTL433INC)
+    PUBLIC $<INSTALL_INTERFACE:include>)
 set_target_properties(gnuradio-rtl433_interface PROPERTIES DEFINE_SYMBOL "gnuradio_rtl433_interface_EXPORTS")
 
 target_link_libraries(gnuradio-rtl433_interface
