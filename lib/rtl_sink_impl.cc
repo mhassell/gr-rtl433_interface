@@ -73,7 +73,6 @@ rtl_sink_impl::rtl_sink_impl(double freq, double samp_rate, sample_format_t form
     if (!d_cfg)
         throw std::runtime_error("Failed to create rtl_433 configuration");
 
-    r_init_cfg(d_cfg);
     register_all_protocols(d_cfg, 0);
     d_cfg->demod->pulse_detect = pulse_detect_create();
     if (!d_cfg->demod->pulse_detect) {
