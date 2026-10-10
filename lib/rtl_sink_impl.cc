@@ -83,6 +83,7 @@ rtl_sink_impl::rtl_sink_impl(double freq, double samp_rate, sample_format_t form
 
     d_cfg->demod->load_info.format = format == FMT_CU8 ? CU8_IQ : CS16_IQ;
     d_cfg->demod->sample_size = static_cast<int>(d_bytes_per_sample);
+    d_cfg->demod->raw_handler = &d_cfg->raw_handler;
     update_frequency(freq);
     update_sample_rate(samp_rate);
 
