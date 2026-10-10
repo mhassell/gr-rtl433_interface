@@ -4,22 +4,26 @@ category: '[rtl433_interface]'
 
 templates:
   imports: from gnuradio import rtl433_interface
-  make: rtl433_interface.rtl_sink()
+  make: rtl433_interface.rtl_sink(${freq}, ${samp_rate}, ${format})
+  callbacks:
+  - set_freq(${freq})
+  - set_samp_rate(${samp_rate})
 
-#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
-#     Keys include:
-#     * id (makes the value accessible as keyname, e.g. in the make entry)
-#     * label (label shown in the GUI)
-#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
-#     * default
-#parameters:
-#- id: parametername_replace_me
-#  label: :
-#  dtype: string
-#  default: You need to fill in your grc/rtl433_interface_rtl_sink.block.yaml
-#- id: ...
-#  label: ...
-#  dtype: ...
+parameters:
+- id: freq
+  label: Frequency (Hz)
+  dtype: real
+  default: 433.92e6
+- id: samp_rate
+  label: Sample Rate (Hz)
+  dtype: real
+  default: 250e3
+- id: format
+  label: Sample Format
+  dtype: enum
+  options: [rtl433_interface.FMT_CS16, rtl433_interface.FMT_CU8]
+  option_labels: [CS16, CU8]
+  default: rtl433_interface.FMT_CS16
 
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:
@@ -35,12 +39,7 @@ inputs:
 #  vlen: ...
 #  optional: ...
 
-outputs:
-#- label: ...
-#  domain: ...
-#  dtype: ...
-#  vlen: ...
-#  optional: ...
+outputs: []
 
 #  'file_format' specifies the version of the GRC yml format used in the file
 #  and should usually not be changed.

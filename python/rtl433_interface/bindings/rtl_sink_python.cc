@@ -29,25 +29,30 @@ void bind_rtl_sink(py::module& m)
 {
 
     using rtl_sink    = gr::rtl433_interface::rtl_sink;
+    using sample_format_t = gr::rtl433_interface::sample_format_t;
 
+    py::enum_<sample_format_t>(m, "sample_format_t")
+        .value("FMT_CU8", gr::rtl433_interface::FMT_CU8)
+        .value("FMT_CS16", gr::rtl433_interface::FMT_CS16)
+        .export_values();
 
     py::class_<rtl_sink, gr::sync_block, gr::block, gr::basic_block,
         std::shared_ptr<rtl_sink>>(m, "rtl_sink", D(rtl_sink))
 
         .def(py::init(&rtl_sink::make),
-           D(rtl_sink,make)
+           D(rtl_sink,make),
+           py::arg("freq") = 433920000.0,
+           py::arg("samp_rate") = 250000.0,
+           py::arg("format") = gr::rtl433_interface::FMT_CS16
         )
-        
-
-
-
+        .def("set_freq", &rtl_sink::set_freq, D(rtl_sink, set_freq))
+        .def("set_samp_rate", &rtl_sink::set_samp_rate, D(rtl_sink, set_samp_rate))
         ;
 
 
 
 
 }
-
 
 
 
